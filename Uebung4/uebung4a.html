@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <title>Übung 4</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Teilnehmerin Registrierung</h1>
+
+        <div class="row">
+            <div class="my-2 col-12 col-sm-6 col-md-4 col-lg-3">
+                <input id="first" type="text" class="form-control" placeholder="First name" aria-label="First name">
+            </div>
+            <div class="my-2 col-12 col-sm-6 col-md-4 col-lg-3">
+                <input id="last" type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+            </div>
+            <div class="my-2 col-12 col-sm-6 col-md-4 col-lg-3">
+                <input id="email" type="email" class="form-control" placeholder="E-Mail" aria-label="E-Mail">
+            </div>
+            <div class="my-2 col-12 col-sm-6 col-md-4 col-lg-3">
+                <input id="ipaddr" type="text" class="form-control" placeholder="IP-Address" aria-label="IP-Address">
+            </div>
+
+            <div class="my-2 col">
+                <input onclick="register()" type="button" class="btn btn-success" value="Registrieren">
+                <input type="button" class="btn btn-secondary" value="Abbrechen">
+            </div>
+        </div>
+
+        <h2>Eingegebene Werte</h2>
+        <div id="output"></div>
+    </div>
+    <script>
+        function register() {
+            // Test, ob Funktion aufgerufen wird
+            console.log('button Registrieren geklickt')
+
+            // Eingabewerte der input-Felder auslesen (ueber id)
+            let fname = document.querySelector('#first').value;
+            let lname = document.querySelector('#last').value;
+            let email = document.querySelector('#email').value;
+            let ipaddr = document.querySelector('#ipaddr').value;
+
+            // Testausgabe der Werte
+            console.log('first: ', fname)
+            console.log('last: ', lname)
+            console.log('email: ', email)
+            console.log('ipaddr: ', ipaddr)
+            
+            // koennte man fuer alle 4 input-Felder machen
+            if(fname == "") {
+                document.querySelector('#first').classList.add('is-invalid')
+            } else {
+                document.querySelector('#first').classList.remove('is-invalid')
+                document.querySelector('#first').classList.add('is-valid')
+            }
+
+            document.querySelector('#output').innerHTML = 
+            `<ul> <li> ${fname} </li>
+                <li> ${lname} </li>
+                <li> ${email} </li> 
+                <li> ${ipaddr} </li> 
+            </ul>`;
+
+
+
+            
+        }
+    </script>
+</body>
+</html>
