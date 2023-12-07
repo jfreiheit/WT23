@@ -1,0 +1,21 @@
+<h1>Alle Teilnehmerinnen</h1>
+
+<input type="text" [formControl]="search" (input)="filterMembers()" />
+<table>
+  <thead>
+    <tr>
+      <th>Nr</th>
+      <th>Vorname</th>
+      <th>Nachname</th>
+      <th>E-Mail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of filterarray; index as i;">
+      <td>{{ i+1 }}</td>
+      <td>{{ item.forename }}</td>
+      <td>{{ item.surname }}</td>
+      <td>{{ item.email }}</td>
+    </tr>
+  </tbody>
+</table>

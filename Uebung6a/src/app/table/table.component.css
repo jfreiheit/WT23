@@ -1,0 +1,12 @@
+th, td{
+  padding: 1%;
+}
+
+thead tr {
+  background-color: black;
+  color: white;
+}
+
+tr:nth-child(even){
+  background-color: lightgrey;
+}
