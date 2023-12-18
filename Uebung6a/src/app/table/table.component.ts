@@ -27,7 +27,7 @@ export class TableComponent implements OnInit {
     let searchstring = this.search.value.toLowerCase();
     console.log(searchstring);
     this.filterarray = this.allmembers.filter( (member) => {
-      return member.forename.toLowerCase().includes(searchstring)
+      return (member.forename.toLowerCase().includes(searchstring) || member.surname.toLowerCase().includes(searchstring)) 
     });
   }
 
