@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { BackendService } from '../shared/backend.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+    private bs = inject(BackendService)
+    private route = inject(Router)
 
     usernameFC = new FormControl('', [Validators.required]);
     passwordFC = new FormControl('', [Validators.required, Validators.minLength(8)]);
@@ -48,13 +52,23 @@ export class RegisterComponent {
     register() {
       if(!this.formInvalid()) {
         let user = {
-          username: this.usernameFC.value,
-          password: this.passwordFC.value,
-          email: this.emailFC.value,
-          role: this.roleFC.value
+          id: 0,
+          username: this.usernameFC.value!,
+          password: this.passwordFC.value!,
+          email: this.emailFC.value!,
+          role: this.roleFC.value!
         }
 
         console.log('user', user)
+
+        this.bs.createOneUser(user).subscribe({
+          next: (response) => {
+            console.log('response', response)
+            this.route.navigate(['/table'])
+          },
+          error: (err) => console.log(err),
+          complete: () => console.log('user created')
+      })
       }
     }
 }
